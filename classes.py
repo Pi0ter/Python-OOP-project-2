@@ -1,3 +1,4 @@
+from drawing import *
 from abc import ABC, abstractmethod
 from descriptors import *
 import math
@@ -62,7 +63,8 @@ class Triangle(ConvexPolygon):
         a = self.length_of_side_a
         b = self.length_of_side_b
         c = self.length_of_side_c
-        pass
+
+        root.mainloop()
 
 
 class ConvexQuadrilateral(ConvexPolygon):
@@ -291,3 +293,19 @@ class Square(Parallelogram):
     def area(self):
         a = self.length_of_side_a
         return a*a
+
+    def draw(self):
+        a = self.length_of_side_a
+
+        avg = size_x -a
+        avg = avg /2
+        avg = avg -  a / 2
+        points = [0+ avg, 0+ avg,
+                  100+ avg, 0+ avg,
+                  100+ avg, 100+ avg,
+                  0+ avg, 100+ avg]
+        canvas.create_polygon(points, outline=self.outline_colour,fill=self.fill_colour, width=2)
+
+        root.lift()
+        canvas.pack()
+        root.mainloop()
