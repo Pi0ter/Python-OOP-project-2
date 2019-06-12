@@ -59,11 +59,28 @@ class Triangle(ConvexPolygon):
         return a + b + c
 
     def draw(self):
-        # TODO: Function doesn't work
-        a = self.length_of_side_a
-        b = self.length_of_side_b
-        c = self.length_of_side_c
 
+        A = self.length_of_side_a
+        B = self.length_of_side_b
+        C = self.length_of_side_c
+
+        avg = size_x / max(A, B, C)
+        avg = int(avg / 2)
+        avg = avg * max(A, B, C)
+
+        By = A - C + B
+        By = By /2
+
+        Bx = B**2 - By**2
+        Bx = math.sqrt(Bx)
+
+        points = [0 + avg, 0 + avg,
+                  Bx + avg, By + avg,
+                  0 + avg, A + avg]
+        canvas.create_polygon(points, outline=self.outline_colour, fill=self.fill_colour, width=2)
+
+        root.lift()
+        canvas.pack()
         root.mainloop()
 
 
@@ -271,7 +288,7 @@ class Kite(ConvexPolygon):
 
 
 class Rhombus(Parallelogram):
-    def __init__(self, length_of_side_a, fill=None, outline=None, alpha=50):
+    def __init__(self, length_of_side_a, alpha, fill=None, outline=None):
         super().__init__(length_of_side_a, length_of_side_a, 1, 1, fill, outline)
         self.alpha = alpha
 
@@ -282,6 +299,52 @@ class Rhombus(Parallelogram):
 
     # def perimeter(self):
     #     return self.length_of_side_a*4
+    def draw(self):
+
+        A = self.length_of_side_a
+        B = self.length_of_side_a
+
+        alpha = self.alpha *2
+        # alpha = 180
+        # print("Angle in deg" + str(alpha))
+        alpha = math.radians(round(alpha, 4))
+        # print("Angle in rad" + str(alpha))
+
+        cosofalpgha = round(math.cos(alpha), 3)
+        # print("Cos of alpha =" + str(cosofalpgha))
+
+        C = (A**2 + B**2)
+        C = C - (2 * A * B * cosofalpgha)
+        C = math.sqrt(C)
+
+        avg = size_x / max(A, B)
+        avg = int(avg / 2)
+        avg = avg * max(A, B)
+        avg = avg / 2
+
+        By = A - C + B
+        By = By / 2
+
+        Bx = B ** 2 - By ** 2
+
+        Bx = math.sqrt(Bx)
+        print(C)
+        print(Bx)
+
+        Cy = A + By
+        Cx = Bx
+
+        points = [0 + avg, 0 + avg,
+                  Bx + avg, By + avg,
+                  Cx + avg, Cy + avg,
+                  0 + avg, A + avg,
+                  ]
+        canvas.create_polygon(points, outline=self.outline_colour, fill=self.fill_colour, width=2)
+
+        root.lift()
+        canvas.pack()
+        root.mainloop()
+
 
 
 class Square(Parallelogram):
@@ -297,13 +360,13 @@ class Square(Parallelogram):
     def draw(self):
         a = self.length_of_side_a
 
-        avg = size_x -a
-        avg = avg /2
-        avg = avg -  a / 2
-        points = [0+ avg, 0+ avg,
-                  100+ avg, 0+ avg,
-                  100+ avg, 100+ avg,
-                  0+ avg, 100+ avg]
+        avg = size_x - a
+        avg = avg / 2
+        avg = avg - a / 2
+        points = [0 + avg, 0 + avg,
+                  100 + avg, 0 + avg,
+                  100 + avg, 100 + avg,
+                  0 + avg, 100 + avg]
         canvas.create_polygon(points, outline=self.outline_colour,fill=self.fill_colour, width=2)
 
         root.lift()

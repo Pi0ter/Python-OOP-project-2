@@ -38,6 +38,7 @@ class AngleDesc:
         self.storage_name = storage_name
 
     def __set__(self, instance, value):
+        value = int(value)
         if 0 < value < 360:
             instance.__dict__[self.storage_name] = value
         else:
@@ -49,6 +50,7 @@ class SmallAngleDesc:
         self.storage_name = storage_name
 
     def __set__(self, instance, value):
+        value = int(value)
         if 0 < value <= 90:
             instance.__dict__[self.storage_name] = value
         else:

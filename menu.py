@@ -32,7 +32,9 @@ class Menu:
         b = input("Side B")
         c = input("Side C")
 
-        if a + b > c and a + c > b and b + c > a:
+        temp = [int(a), int(b), int(c)]
+        temp = sorted(temp)
+        if temp[0] + temp[1] > temp[2]:
             print("Please enter colours of triangle [white, black, red, blue ,green] ")
             fill = input("Colour of the triangle ")
             outline = input("Colour of outline of the triangle ")
@@ -43,6 +45,7 @@ class Menu:
             trojkat.draw()
             input("Press enter to continue")
 
+
     def isctriangle(self):
         print("-" * 20)
         print("Constructing triangle...    ")
@@ -51,8 +54,9 @@ class Menu:
         a = input("Side A")
         b = a
         c = input("Side C")
-
-        if a + b > c and a + c > b and b + c > a:
+        temp = [int(a), int(b), int(c)]
+        temp = sorted(temp)
+        if temp[0] + temp[1] > temp[2]:
             print("Please enter colours of triangle [white, black, red, blue ,green] ")
             fill = input("Colour of the triangle ")
             outline = input("Colour of outline of the triangle ")
@@ -140,7 +144,7 @@ class Menu:
             print("Please enter colours of rhombus [white, black, red, blue ,green] ")
             fill = input("Colour of the rhombus ")
             outline = input("Colour of outline of the rhombus ")
-            romb = Rhombus(a, fill, outline, alpha)
+            romb = Rhombus(a, alpha, fill, outline)
 
             print("Area of rhombus: " + str(romb.area()))
             print("Perimeter of rhombus: " + str(romb.perimeter()))
