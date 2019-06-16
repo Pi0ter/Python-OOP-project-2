@@ -91,8 +91,6 @@ class ConvexQuadrilateral(ConvexPolygon):
     length_of_side_d = LengthDesc('length_of_side_d')
     length_of_diagonal_p = LengthDesc('length_of_diagonal_p')
     length_of_diagonal_q = LengthDesc('length_of_diagonal_q')
-    # alpha = AngleDesc('alpha') # alpha to kąt  |DAB|
-    # beta = AngleDesc('beta') # beta to kąt |BCD|
 
     def __init__(self, length_of_side_a, length_of_side_b, length_of_side_c,
                  length_of_side_d, length_of_diagonal_p, length_of_diagonal_q, fill=None, outline=None,):
@@ -118,13 +116,6 @@ class ConvexQuadrilateral(ConvexPolygon):
         d = self.length_of_side_d
         p = self.length_of_diagonal_p
         q = self.length_of_diagonal_q
-
-        # alpha = self.alpha
-        # beta = self.beta
-        # s = (a + b + c + d)/2
-        # area = (s-a)*(s-b)*(s-c)*(s-d)
-        # area -= a * b * c * d * (math.cos((alpha+beta)/2))**2
-        # area = math.sqrt(area)
 
 
         #  Area formula from z http://www.ambrsoft.com/TrigoCalc/Quadrilateral/Shape1.htm
@@ -258,22 +249,6 @@ class Kite(ConvexPolygon):
     def perimeter(self):
         p = self.length_of_diagonal_p
         q = self.length_of_diagonal_q
-        # alpha = self.alpha
-        # beta = (360 - alpha * 2)/2
-
-        # small triangle
-        # b = p/2
-        # alp = alpha /2
-        # bet = 90 - alp
-        #
-        # c = b * math.cos(bet)
-        # a = c * math.cos(bet)
-        #
-        # per = c*2
-        #
-        # d = math.sqrt(b**2 + (q-a)**2)
-        # per += d*2
-        # return per
 
         b = p/2
         c = q/2
